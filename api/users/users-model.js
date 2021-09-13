@@ -10,7 +10,7 @@ async function find() {
   resolves to an ARRAY with all users that match the filter condition
  */
 function findBy(filter) {
-  return db("users").where(filter).orderBy("user_id");
+  return db("users").where(filter)
 }
 
 /**

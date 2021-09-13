@@ -29,7 +29,7 @@ function restricted(req, res, next) {
 async function checkUsernameFree(req, res, next) {
   try{
     const users = await User.findBy({ username: req.body.username })
-    if(!users.length()) {next()}
+    if(!users.length) {next()}
     else{
       next({status:422, message: "Username taken"})
     }
@@ -70,7 +70,7 @@ async function checkUsernameExists(req, res, next) {
   }
 */
 function checkPasswordLength(req, res, next) {
- 
+
  if(!req.body.password || req.body.password.length < 3) {
    console.log(req.body)
    return({status:422, message:'Password must be longer than 3 chars'})

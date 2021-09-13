@@ -1,11 +1,11 @@
-const express = require("express");
 const helmet = require("helmet");
+const express = require("express");
 const cors = require("cors");
+const usersRouter = require('./users/users-router')
+const authRouter = require('./auth/auth-router')
 const session = require('express-session');
 const Store = require('connect-session-knex')(session);
 const knex = require('../data/db-config')
-const usersRouter = require('./users/users-router')
-const authRouter = require('./auth/auth-router')
 
 const server = express();
 

@@ -61,17 +61,18 @@ const {checkPasswordLength, checkUsernameExists, checkUsernameFree} = require('.
     "message": "no session"
   }
  */
-router.post('/register',checkPasswordLength,checkUsernameFree, async(req, res, next) => {
-  try{
-    const { username, password } = req.body;
-    const hash = bcrypt.hashSync(password, 8);
-    const newUser = { username, password: hash };
-    const user = await User.add(newUser);
-    res.status(201).json(user);
-  }catch (err){
-    next(err)
-  }
-})
+  router.post('/register', checkUsernameFree, checkPasswordLength, async (req, res) => {
+    let user = req.body
+ try {
+    const hash = bcrypt.hashSync(user.password, 12)
+    const newUser = await User.add({username: user.username, password: hash})
+    res.status(201).json(newUser)
+ 
+ }catch(e){
+   res.status.json({message: e.message})
+ 
+ }
+  })
 
 
 
